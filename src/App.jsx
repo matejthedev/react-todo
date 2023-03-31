@@ -7,6 +7,7 @@ import AddTodo from './components/AddTodo'
 function App() {
   const [todos, setTodos] = useState([])
   const [newTodo, setNewTodo] = useState(null)
+  const [showOnlyActive, setShowOnlyActive] = useState(false)
 
   const addTodo = () => {
     if(!newTodo) return
@@ -31,11 +32,15 @@ function App() {
     })
   )}
 
+  const toggleView = () => {
+    setShowOnlyActive(prev => !prev)
+  }
+
   return (
     <div className="App">
       <AddTodo addTodo={addTodo} setNewTodo={setNewTodo} newTodoHandler={newTodoHandler} newTodo={newTodo}/>
-      <Todos todos={todos} deleteTodo={deleteTodo} markAsDone={markAsDone}/>
-      <View />
+      <Todos todos={todos} deleteTodo={deleteTodo} markAsDone={markAsDone} showOnlyActive={showOnlyActive}/>
+      <View showOnlyActive={showOnlyActive} toggleView={toggleView}/>
     </div>
   )
 }
