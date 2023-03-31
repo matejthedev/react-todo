@@ -1,9 +1,13 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Todo from "./Todo";
 
-const Todos = ({ todos, deleteTodo, markAsDone, showOnlyActive }) => {
+const Todos = () => {
+  const todos = useSelector(state => state.todos);
+  const {showOnlyActive} = useSelector(state => state.view);
 
-  const filteredTodos = showOnlyActive ? todos.filter(todo =>  !todo.done) : todos
+  const filteredTodos = showOnlyActive ? todos.filter(todo => !todo.done) : todos;
+
   return (
     <div>
       {todos.length > 0 &&
@@ -12,8 +16,6 @@ const Todos = ({ todos, deleteTodo, markAsDone, showOnlyActive }) => {
             key={id}
             id={id}
             name={name}
-            deleteTodo={deleteTodo}
-            markAsDone={markAsDone}
             done={done}
           />
         ))}

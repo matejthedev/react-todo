@@ -1,10 +1,13 @@
 import React from 'react'
+import { markAsDone, deleteTodo } from '../redux/todos'
+import { useDispatch } from "react-redux";
 
-const Todo = ({name, deleteTodo, id, markAsDone, done}) => {
+const Todo = ({name, id, done}) => {
+  const dispatch = useDispatch()
   return (
     <div>
-      <span onClick={() => markAsDone(id)} style={{textDecoration: done ? "line-through" : "none"}}>{name}</span>
-      <button onClick={() => deleteTodo(id)}>Del</button>
+      <span onClick={() => dispatch(markAsDone(id))} style={{textDecoration: done ? "line-through" : "none"}}>{name}</span>
+      <button onClick={() => dispatch(deleteTodo(id))}>Del</button>
     </div>
   )
 }
