@@ -1,14 +1,22 @@
-import React from 'react'
-import Todo from './Todo'
+import React from "react";
+import Todo from "./Todo";
 
-const Todos = ({todos, deleteTodo}) => {
+const Todos = ({ todos, deleteTodo, markAsDone }) => {
   return (
     <div>
-      {
-        todos.length && todos.map((todo, index) => <Todo key={index} index={index} todo={todo} deleteTodo={deleteTodo}/>)
-      }
+      {todos.length &&
+        todos.map(({ name, id, done }) => (
+          <Todo
+            key={id}
+            id={id}
+            name={name}
+            deleteTodo={deleteTodo}
+            markAsDone={markAsDone}
+            done={done}
+          />
+        ))}
     </div>
-  )
-}
+  );
+};
 
-export default Todos
+export default Todos;

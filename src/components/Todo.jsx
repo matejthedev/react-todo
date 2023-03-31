@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Todo = ({todo, deleteTodo, index}) => {
+const Todo = ({name, deleteTodo, id, markAsDone, done}) => {
   return (
     <div>
-      <span>{todo}</span>
-      <button onClick={() => deleteTodo(index)}>Del</button>
+      <span onClick={() => markAsDone(id)} style={{textDecoration: done ? "line-through" : "none"}}>{name}</span>
+      <button onClick={() => deleteTodo(id)}>Del</button>
     </div>
   )
 }
